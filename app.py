@@ -35,8 +35,8 @@ data_train = open("data_train.pkl","rb")
 data_train = pickle.load(data_train)
 
 explainer = lime_tabular.LimeTabularExplainer(
-    training_data = np.array(data_train),
-    feature_names = data_train.columns,
+    training_data = np.array(data_train.drop(['SK_ID_CURR'], axis =1)),
+    feature_names = data_train.drop(['SK_ID_CURR'], axis =1).columns,
     class_names = [0, 1],
     mode = 'classification'
 )
@@ -46,26 +46,35 @@ explainer = lime_tabular.LimeTabularExplainer(
 #  http://127.0.0.1:8000
 @app.get('/')
 def index():
+    """
+    message de base de l'API (non utilise par la suite)
+    """
     return {'message': 'Bienvenue sur la prédiction du remboursement d un client Home Credit'}
 
 # 3. Expose the prediction functionality
 
 class Individu(BaseModel):
-    index:int
+    id_cli:int
 
 @app.post('/show')
 def Print_individu(index_test:Individu):
-    index_ = index_test.index
-    #print(index_)
-    individu_teste = data_test.iloc[index_:index_+1].to_json(orient = 'records')
+    """ 
+    Retourne la ligne avec les informations concernant l'individu teste
+    """
+    index_ = index_test.id_cli
+  #  print(index_)
+    individu_teste = data_test[data_test['SK_ID_CURR'] == index_].drop(['SK_ID_CURR'], axis =1).to_json(orient = 'records')
 
     return individu_teste
 
 @app.post('/predict')
 def predict_defaut(index_test:Individu):
-    index_ = index_test.index
+    """
+    Renvoi la prediction du modele pour l'individu teste
+    """
+    index_ = index_test.id_cli
     #print(index_)
-    individu_teste = data_test.iloc[index_:index_+1]
+    individu_teste = data_test[data_test['SK_ID_CURR'] == index_].drop(['SK_ID_CURR'], axis =1)
    # print(individu_teste)
  #   print(classifier.predict(individu_teste))
     prediction = classifier.predict_proba(individu_teste)[0][1]
@@ -76,13 +85,16 @@ def predict_defaut(index_test:Individu):
 
 @app.post('/explain')
 def explain_feature(index_test:Individu):
-    index_ = index_test.index
+    """
+    Renvoi la prediction par LIME ainsi que l'explication de la decision pour l'individu teste
+    """
+    index_ = index_test.id_cli
     #print(index_)
-    individu_teste = data_test.iloc[index_:index_+1]
+    individu_teste = data_test[data_test['SK_ID_CURR'] == index_].drop(['SK_ID_CURR'], axis =1).values
    # print(individu_teste)
  #   print(classifier.predict(individu_teste))
     exp = explainer.explain_instance(
-        data_row = data_test.iloc[index_], 
+        data_row = individu_teste[0], 
         predict_fn = classifier.predict_proba
     )
     return json.dumps(exp.as_list())
