@@ -152,6 +152,7 @@ def main():
         plt.xlabel('Pouvoir prédictif de la variable')
         plt.ylabel('Variables')
         st.pyplot(fig=fig)
+        plt.close()
         
         
     with st.container() :
