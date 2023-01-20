@@ -152,6 +152,15 @@ def main():
         plt.xlabel('Pouvoir prédictif de la variable')
         plt.ylabel('Variables')
         st.pyplot(fig=fig)
+        
+        
+    with st.container() :
+        Colonne = st.selectbox('Quel variable souhaitait vous consulter ? ', data_test.columns)
+        fig = sns.kdeplot(data = data_test, x = var, hue = 'TARGET', common_norm = True)
+        
+        
+        
+        
 if __name__ == '__main__':
     main()
 

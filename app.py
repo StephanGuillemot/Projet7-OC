@@ -35,8 +35,8 @@ data_train = open("data_train.pkl","rb")
 data_train = pickle.load(data_train)
 
 explainer = lime_tabular.LimeTabularExplainer(
-    training_data = np.array(data_train.drop(['SK_ID_CURR'], axis =1)),
-    feature_names = data_train.drop(['SK_ID_CURR'], axis =1).columns,
+    training_data = np.array(data_train.drop(['SK_ID_CURR', 'TARGET'], axis =1)),
+    feature_names = data_train.drop(['SK_ID_CURR', 'TARGET'], axis =1).columns,
     class_names = [0, 1],
     mode = 'classification'
 )
@@ -63,7 +63,7 @@ def Print_individu(index_test:Individu):
     """
     index_ = index_test.id_cli
   #  print(index_)
-    individu_teste = data_test[data_test['SK_ID_CURR'] == index_].drop(['SK_ID_CURR'], axis =1).to_json(orient = 'records')
+    individu_teste = data_test[data_test['SK_ID_CURR'] == index_].drop(['SK_ID_CURR', 'TARGET'], axis =1).to_json(orient = 'records')
 
     return individu_teste
 
@@ -74,7 +74,7 @@ def predict_defaut(index_test:Individu):
     """
     index_ = index_test.id_cli
     #print(index_)
-    individu_teste = data_test[data_test['SK_ID_CURR'] == index_].drop(['SK_ID_CURR'], axis =1)
+    individu_teste = data_test[data_test['SK_ID_CURR'] == index_].drop(['SK_ID_CURR', 'TARGET' ], axis =1)
    # print(individu_teste)
  #   print(classifier.predict(individu_teste))
     prediction = classifier.predict_proba(individu_teste)[0][1]
@@ -90,7 +90,7 @@ def explain_feature(index_test:Individu):
     """
     index_ = index_test.id_cli
     #print(index_)
-    individu_teste = data_test[data_test['SK_ID_CURR'] == index_].drop(['SK_ID_CURR'], axis =1).values
+    individu_teste = data_test[data_test['SK_ID_CURR'] == index_].drop(['SK_ID_CURR', 'TARGET' ], axis =1).values
    # print(individu_teste)
  #   print(classifier.predict(individu_teste))
     exp = explainer.explain_instance(
