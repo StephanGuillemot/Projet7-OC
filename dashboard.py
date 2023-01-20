@@ -151,7 +151,7 @@ def main():
         fig = sns.barplot(data = df_explain_plot, x = 1, y = 0, hue = 'positive' , palette = 'rocket').get_figure()
         plt.xlabel('Pouvoir prédictif de la variable')
         plt.ylabel('Variables')
-        st.pyplot(fig=fig)
+        st.pyplot(fig=fig, clear_figure = True)
         plt.close()
         
         
