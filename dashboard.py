@@ -161,8 +161,9 @@ def main():
         
         
     with st.container():
-        fig = sns.kdeplot(data = data_test, x = Colonne, hue = 'TARGET', common_norm = True).get_figure()
-        fig = plt.plot([Val_credit, Val_credit] , [0,1], 'r', linestyle = 'dashed')
+        fig = plt.figure(figsize=(10, 4))
+        sns.kdeplot(data = data_test, x = Colonne, hue = 'TARGET', common_norm = True)
+        plt.plot([Val_credit, Val_credit] , [0,1], 'r', linestyle = 'dashed')
         plt.xlabel(f'Valeur {Colonne}')
         plt.ylabel(f'Répartition {Colonne} Defaut et Sains')
         st.pyplot(fig=fig)
