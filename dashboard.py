@@ -104,7 +104,7 @@ def main():
                 "progress": {
                     "show": "true",
                     "roundCap": "true",
-                    "width": 6
+                    "width": 18
                 },
                 "pointer": {
                     "length": '60%',
@@ -118,8 +118,8 @@ def main():
                     "borderColor": '#999',
                     "borderWidth": 4,
                     "width": '60%',
-                    "lineHeight": 100,
-                    "height": 100,
+                    "lineHeight": 20,
+                    "height": 20,
                     "borderRadius": 188,
                     "offsetCenter": [0, '40%'],
                     "valueAnimation": "true",
