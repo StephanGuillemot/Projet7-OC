@@ -159,7 +159,7 @@ def main():
         Colonne = st.selectbox('Quel variable souhaitait vous consulter ? ', data_test.drop(['SK_ID_CURR'], axis = 1).columns.values)
     with st.container():
         fig = sns.kdeplot(data = data_test, x = Colonne, hue = 'TARGET', common_norm = True)
-        fig = plt.plot([float(data_test[data_test['SK_ID_CURR'] == index][Colonne]), float(data_test[data_test['SK_ID_CURR'] == index][Colonne])] , [0,1], 'r', linestyle = 'dashed')
+        #fig = plt.plot([float(data_test[data_test['SK_ID_CURR'] == index][Colonne]), float(data_test[data_test['SK_ID_CURR'] == index][Colonne])] , [0,1], 'r', linestyle = 'dashed')
         plt.xlabel(f'Valeur {Colonne}')
         plt.ylabel(f'Répartition {Colonne} Defaut et Sains')
         st.pyplot(fig=fig)
