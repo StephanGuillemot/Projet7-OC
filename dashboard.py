@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import pickle
 # streamlit run dashboard.py
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="medium")
 
 # Import data
 data_test = open("data_test.pkl","rb")
@@ -148,7 +148,8 @@ def main():
         df_explain_plot = pd.DataFrame(explain_plot)
        # st.write(df_explain_plot)
         df_explain_plot['positive'] = df_explain_plot[1] > 0
-        fig = sns.barplot(data = df_explain_plot, x = 1, y = 0, hue = 'positive' , palette = 'rocket').get_figure()
+        fig = plt.figure(figsize=(10, 4))
+        sns.barplot(data = df_explain_plot, x = 1, y = 0, hue = 'positive' , palette = 'rocket')
         plt.xlabel('Pouvoir prédictif de la variable')
         plt.ylabel('Variables')
         st.pyplot(fig=fig, clear_figure = True)
