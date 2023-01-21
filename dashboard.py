@@ -77,7 +77,7 @@ def main():
                 "type": 'gauge',
                 "axisLine": {
                     "lineStyle": {
-                        "width": 5,
+                        "width": 10,
                         "color": [
                                 [0.3, '#2FEB00'], # seuils intermédiaires
                                 [0.7, '#FF8114'],
