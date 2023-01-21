@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import pickle
 # streamlit run dashboard.py
 
-st.set_page_config(layout="centered")
+st.set_page_config(layout="wide")
 
 # Import data
 data_test = open("data_test.pkl","rb")
