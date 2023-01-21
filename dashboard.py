@@ -156,7 +156,7 @@ def main():
         
         
     with st.container() :
-        Colonne = st.selectbox('Quel variable souhaitait vous consulter ? ', data_test.drop(['SK_ID_CURR'], axis = 1).columns.values)
+        Colonne = st.selectbox('Quel variable souhaitait vous consulter ? ', data_test.drop(['SK_ID_CURR'], axis = 1).columns)
     with st.container():
         fig = sns.kdeplot(data = data_test, x = Colonne, hue = 'TARGET', common_norm = True)
         #fig = plt.plot([float(data_test[data_test['SK_ID_CURR'] == index][Colonne]), float(data_test[data_test['SK_ID_CURR'] == index][Colonne])] , [0,1], 'r', linestyle = 'dashed')
