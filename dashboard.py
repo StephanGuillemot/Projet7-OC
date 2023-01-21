@@ -118,8 +118,8 @@ def main():
                     "borderColor": '#999',
                     "borderWidth": 4,
                     "width": '60%',
-                    "lineHeight": 20,
-                    "height": 20,
+                    "lineHeight": 100,
+                    "height": 100,
                     "borderRadius": 188,
                     "offsetCenter": [0, '40%'],
                     "valueAnimation": "true",
@@ -164,6 +164,7 @@ def main():
         fig = plt.figure(figsize=(10, 4))
         sns.kdeplot(data = data_test, x = Colonne, hue = 'TARGET', common_norm = True)
         plt.plot([Val_credit, Val_credit] , [0,1], 'r', linestyle = 'dashed')
+        plt.title(f'Le credit predit se place de cette manière pour la variable {Colonne}')
         plt.xlabel(f'Valeur {Colonne}')
         plt.ylabel(f'Répartition {Colonne} Defaut et Sains')
         st.pyplot(fig=fig)
