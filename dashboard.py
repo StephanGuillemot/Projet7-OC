@@ -79,8 +79,8 @@ def main():
                     "lineStyle": {
                         "width": 10,
                         "color": [
-                                [0.3, '#2FEB00'], # seuils intermédiaires
-                                [0.7, '#FF8114'],
+                                [0.13, '#2FEB00'], # seuils intermédiaires
+                                [0.63, '#FF8114'],
                                 [1, '#FF0000']
                             ]
                         },},
